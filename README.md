@@ -21,14 +21,14 @@ Seman 5: Base de Datos MVP
 - Cuyos atributos son:
 
 * Mascota 
-> - id
-> - nombre
-> - foto
+> - id = INTEGER PRIMARY KEY 
+> - nombre = TEXT
+> - foto = INTEGER
 
 * Mascotas Likes 
-> - id
-> - id_mascota
-> - numero_likes
+> - id = INTEGER PRIMARY KEY 
+> - id_mascota = INTEGER FOREIGN KEY 
+> - numero_likes = INTEGER
 
 - Para empezar modificamos el Pojo añadiento el id 
 #### Java: Pojo del proyecto
@@ -210,12 +210,10 @@ public class ConstructorMascotas {
     }
 
     public ArrayList<Mascota> obtenerLikesMascotas(){
-       // BaseDatos db = new BaseDatos(context);
         return db.obtenerLikesMascotasDB();
     }
 
     public void darLikeMascota (Mascota mascota){
-        //BaseDatos db =new BaseDatos(context);
         ContentValues contentValues = new ContentValues();
         contentValues.put(ConstantesBaseDatos.TABLE_LIKES_MASCOTA_ID_MASCOTA, mascota.getId());
         contentValues.put(ConstantesBaseDatos.TABLE_LIKES_MASCOTA_NUMERO_LIKES, mascota.getLikes() + LIKE);
@@ -223,7 +221,6 @@ public class ConstructorMascotas {
     }
 
     public int obtenerLikesMascota (Mascota mascota){
-        //BaseDatos db = new BaseDatos(context);
         return  db.obtenerLikesMascota(mascota);
     }
 }
@@ -236,13 +233,9 @@ public class ConstructorMascotas {
 public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragmentView{
     // Variables Globales
     private RecyclerView listadoMascotas;
-    //ArrayList<Mascota> lstmascotas;
-
-
     private IRecyclerViewFragmentPresenter presenter;
 
     public RecyclerViewFragment() {
-
     }
 
     public static RecyclerViewFragment newInstance(String param1, String param2) {
@@ -264,8 +257,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         // Creamos el RecyclerView
         listadoMascotas = (RecyclerView) v.findViewById( R.id.rvMascota );
         RecyclerViewFragmentPresenter recyclerViewFragmentPresenter = new RecyclerViewFragmentPresenter(this, getActivity(),false);
-        //generarLinearLayoutVertical();
-       // presenter = new RecyclerViewFragmentPresenter(this, getContext());
         return v;
     }
 
@@ -301,9 +292,8 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
     private IRecyclerViewFragmentView iRecyclerViewFragmentView;
     private Context context;
     ConstructorMascotas constructorMascotas;
-    //private ArrayList<Mascota> mascotas;
 
-    public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context, boolean bRaiting) {
+public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context, boolean bRaiting) {
         this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
         this.context = context;
         constructorMascotas= new ConstructorMascotas(this.context);
