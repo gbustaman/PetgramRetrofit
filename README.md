@@ -5,6 +5,7 @@ Seman 5: Base de Datos MVP
 
 > - Base de Datos  
 > - MVP (Modelo Vista Presentador)
+
 ## Enunciado del Ejercicio
 - Tomando como punto de partida la funcionalidad que generaste para mostrar las ultimas 5 mascotas, es momento de dar persistencia a esta información.
 
@@ -15,15 +16,16 @@ Seman 5: Base de Datos MVP
 ## Descripción del proyecto:
 - Acontinuacion describiré de forma brebe mi trabajo:
 
-### 1. Crear un nuevo paquete a la entidad mascota.
+### Crear un nuevo paquete a la entidad mascota.
 - Para representarla se crea un nuevo paquete Java con el nombre "db". Dentro de este, se añade una clase llamada BaseDatos, ConstructorMascota y ConstantesBaseDatos.
 - Cuyos atributos son:
-Mascota 
+
+* Mascota 
 > - id
 > - nombre
 > - foto
 
-Mascotas Likes 
+* Mascotas Likes 
 > - id
 > - id_mascota
 > - numero_likes
