@@ -1,0 +1,35 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="layout_margin_vertical">8dp</dimen>
+    <dimen name="layout_margin_horizontal">8dp</dimen>
+    <dimen name="layout_margin_left">10dp</dimen>
+    <dimen name="layout_margin_right">10dp</dimen>
+    <dimen name="layout_margin_bottom">10dp</dimen>
+    <dimen name="layout_margin_top">10dp</dimen>
+
+    <dimen name="grid_bottom">20dp</dimen>
+    <dimen name="grid_rigth">15dp</dimen>
+
+    <dimen name="corner_radius_cardview">4dp</dimen>
+    <dimen name="alto_cardview">218dp</dimen>
+
+
+    <dimen name="elevacion_actinbar">4dp</dimen>
+
+    <dimen name="padding_edtxt_left">8dp</dimen>
+    <dimen name="text_titulo_size">20sp</dimen>
+    <dimen name="text_desarrollador">25sp</dimen>
+    <dimen name="text_padding_left">10dp</dimen>
+    <dimen name="text_padding_right">10dp</dimen>
+    <dimen name="text_margin_left">15dp</dimen>
+    <dimen name="text_margin_right">12dp</dimen>
+
+    <dimen name="altura_foto">150dp</dimen>
+    <dimen name="altura_bone">40dp</dimen>
+    <dimen name="ancho_bone">40dp</dimen>
+
+    <dimen name="divider_fragment_perfil">2dp</dimen>
+
+</resources>

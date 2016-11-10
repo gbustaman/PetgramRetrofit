@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvMascota"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    card_view:cardCornerRadius="@dimen/corner_radius_cardview"
+    >
+    
+    <LinearLayout
+        android:id="@+id/llMascota"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgFotoMascota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/mascota_19_2" />
+        <GridLayout
+            android:id="@+id/glBase"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altura_bone"
+
+            >
+
+            <ImageButton
+                android:id="@+id/btnLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/textIcons"
+                android:src="@drawable/hueso_dog_48"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_column="0"
+                android:layout_row="0"
+                />
+            <TextView
+                android:id="@+id/tvNombreMascotaCV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terry"
+                android:textSize="20sp"
+                android:textColor="@color/textSecundary"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_column="1"
+                android:layout_row="0"/>
+            <TextView
+                android:id="@+id/tvRaitingCV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textSize="20sp"
+                android:textColor="@color/textSecundary"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_column="3"
+                android:layout_row="0"/>
+            <ImageView
+                android:id="@+id/ivHuesoAmarrillo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hueso_dog_amarillo_50"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_column="4"
+                android:layout_row="0"/>
+
+        </GridLayout>
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

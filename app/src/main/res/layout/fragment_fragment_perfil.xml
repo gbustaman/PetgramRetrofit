@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+                <!-- TODO: Update blank fragment layout -->
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/civPerfilMascota"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/mascota_19_2"
+                    android:layout_gravity="center"
+                    app:civ_border_color="@color/colorPrimaryDark"
+                    app:civ_border_width="6dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_radius="1"
+                    app:civ_shadow_color="#8BC34A"/>
+
+                <TextView
+                    android:id="@+id/tvNombrePerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/text_titulo_size"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/layout_margin_top"
+                    android:text="@string/name_default"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_fragment_perfil"
+                    android:layout_marginTop="@dimen/layout_margin_vertical"
+                    android:layout_marginBottom="@dimen/layout_margin_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/dividerColor" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPerfilMascota"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/grid_bottom"
+            android:paddingRight="@dimen/grid_rigth">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/FAB_Camera_Perfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:background="@color/colorPrimaryLight"
+                    android:src="@drawable/camera_filled_50_blanco"
+                    />
+        </GridLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+

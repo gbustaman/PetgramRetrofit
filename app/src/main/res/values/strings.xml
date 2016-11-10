@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PetgramMascotas</string>
+    <string name="name_lista_mascota">Lista de Mascotas</string>
+    <string name="name_favorito">Mascotas Favoritas</string>
+    <string name="menu_contacto">Contacto</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="btn_subir">Subir Nueva Mascota</string>
+    <string name="detalle_contacto">Detalle del Desarrollador</string>
+    <string name="nombre_contacto">Nombre:</string>
+    <string name="email_contacto">Email:</string>
+    <string name="comentario_contacto">Mensaje:</string>
+    <string name="btn_enviar_mail">Enviar</string>
+    <string name="nombre_creador">Gregory Bustamante</string>
+    <string name="biografia_desarrollador"> Nació en el año 1987 estudió la carrera de Ing. Electromecánica y se graduó de la Universidad UAGRM en el año 2008,
+        mismo año realiza un diplomado en Automatización Industrial y actualmente se encuentra estudiado una especialidad en la UNAM
+        "Desarrollo de aplicaciones móviles con Android" mediante Coursera</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="floating_mensaje">Subir Foto</string>
+
+    <string name="msg_send">Mensaje Enviado</string>
+    <string name="like">Diste like a </string>
+
+    <string name="name_default">Valvula</string>
+
+</resources>
