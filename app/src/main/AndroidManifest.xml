@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gecode.petgrammascotas">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -27,7 +29,9 @@
                 android:value=".ListaMascotas" />
         </activity>
         <activity android:name=".menu.Contacto" />
-        <activity android:name=".menu.About"></activity>
+        <activity android:name=".menu.About" />
+        <activity android:name=".menu.ConfigurarCuenta" />
+        <activity android:name=".DetalleFoto"></activity>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.gecode.petgrammascotas.R;
 import com.gecode.petgrammascotas.adapter.AdapterMascota;
-import com.gecode.petgrammascotas.modelo.Mascota;
+import com.gecode.petgrammascotas.modelo.PerfilMascota;
 import com.gecode.petgrammascotas.presentador.IRecyclerViewFragmentPresenter;
 import com.gecode.petgrammascotas.presentador.RecyclerViewFragmentPresenter;
 
@@ -24,25 +24,24 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
     // Variables Globales
     private RecyclerView listadoMascotas;
     //ArrayList<Mascota> lstmascotas;
-
-
+    private ArrayList<PerfilMascota> mascotas;
     private IRecyclerViewFragmentPresenter presenter;
 
-    public RecyclerViewFragment() {
+    /*public RecyclerViewFragment() {
 
-    }
+    }*/
 
-    public static RecyclerViewFragment newInstance(String param1, String param2) {
+    /*public static RecyclerViewFragment newInstance(String param1, String param2) {
         RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
         Bundle args = new Bundle();
         recyclerViewFragment.setArguments(args);
         return recyclerViewFragment;
-    }
-
+    }*/
+    /*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,9 +49,11 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         View v = inflater.inflate(R.layout.fragment_recycleview,container,false);
         // Creamos el RecyclerView
         listadoMascotas = (RecyclerView) v.findViewById( R.id.rvMascota );
-        RecyclerViewFragmentPresenter recyclerViewFragmentPresenter = new RecyclerViewFragmentPresenter(this, getActivity(),false);
+        //RecyclerViewFragmentPresenter recyclerViewFragmentPresenter = new RecyclerViewFragmentPresenter(this, getActivity(),false);
         //generarLinearLayoutVertical();
        // presenter = new RecyclerViewFragmentPresenter(this, getContext());
+        presenter = new RecyclerViewFragmentPresenter(this, getContext());
+
         return v;
     }
 
@@ -63,9 +64,15 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         listadoMascotas.setLayoutManager( llm );
     }
 
+
     @Override
-    public void crearAdapter(ArrayList<Mascota> lstMascotas) {
-        AdapterMascota adaptador = new AdapterMascota(lstMascotas,getActivity());
+    public AdapterMascota crearAdapter(ArrayList<PerfilMascota> mascotas) {
+        AdapterMascota a = new AdapterMascota(mascotas, getActivity());
+        return a;
+    }
+
+    @Override
+    public void inicializarAdaptador(AdapterMascota adaptador) {
         listadoMascotas.setAdapter(adaptador);
     }
 }

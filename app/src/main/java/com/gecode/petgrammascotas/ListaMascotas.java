@@ -1,6 +1,8 @@
 package com.gecode.petgrammascotas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,12 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.gecode.petgrammascotas.adapter.PageAdapter;
+import com.gecode.petgrammascotas.menu.About;
+import com.gecode.petgrammascotas.menu.ConfigurarCuenta;
+import com.gecode.petgrammascotas.menu.Contacto;
 import com.gecode.petgrammascotas.vista.fragment.FragmentPerfil;
 import com.gecode.petgrammascotas.vista.fragment.RecyclerViewFragment;
-import com.gecode.petgrammascotas.menu.About;
-import com.gecode.petgrammascotas.menu.Contacto;
 
 import java.util.ArrayList;
 
@@ -45,6 +49,8 @@ public class ListaMascotas extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
+        estableceCuentaInstagram();
+
         ImageView imgestrella = (ImageView) findViewById(R.id.imgstar);
         imgestrella.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +60,20 @@ public class ListaMascotas extends AppCompatActivity {
             }
         });
     }
+
+    private void estableceCuentaInstagram() {
+        SharedPreferences miPreferenciaCompartida = getSharedPreferences("MisDatosPersonales", Context.MODE_PRIVATE);
+
+        String nombrePerfilActual = miPreferenciaCompartida.getString(getResources().getString(R.string.NombrePerfil), "");
+
+        if(nombrePerfilActual==""){
+
+            SharedPreferences.Editor editor = miPreferenciaCompartida.edit();
+            editor.putString(getResources().getString(R.string.NombrePerfil), getResources().getString(R.string.cuentaInstagram));
+            editor.commit();
+        }
+    }
+
     private ArrayList <Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new RecyclerViewFragment());
@@ -93,6 +113,11 @@ public class ListaMascotas extends AppCompatActivity {
             case R.id.mAbout:
                 Intent intent2 = new Intent(this, About.class);
                 startActivity(intent2);
+                break;
+            case R.id.mCuentaIstagram:
+                Toast.makeText(this, getResources().getString(R.string.item_config), Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(this, ConfigurarCuenta.class);
+                startActivity(intent3);
                 break;
         }return super.onOptionsItemSelected(item);
     }

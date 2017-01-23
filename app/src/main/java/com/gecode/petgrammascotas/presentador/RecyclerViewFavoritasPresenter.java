@@ -5,68 +5,41 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.gecode.petgrammascotas.modelo.PerfilMascota;
-import com.gecode.petgrammascotas.modelo.db.ConstructorMascotas;
 import com.gecode.petgrammascotas.restApi.IEndPointsApi;
 import com.gecode.petgrammascotas.restApi.adapter.RestApiAdapter;
 import com.gecode.petgrammascotas.restApi.model.MascotasResponse;
-import com.gecode.petgrammascotas.vista.fragment.IRecyclerViewFragmentView;
+import com.gecode.petgrammascotas.vista.fragment.IRecyclerViewFavoritas;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by gregorybr on 09-11-16.
+ * Created by gregorybr on 23-01-17.
  */
 
-public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPresenter{
+public class RecyclerViewFavoritasPresenter implements IRecyclerViewFavoritasPresenter {
 
-    private IRecyclerViewFragmentView iRecyclerViewFragmentView;
+    private IRecyclerViewFavoritas iRecyclerViewFavoritas;
     private Context context;
-    ConstructorMascotas constructorMascotas;
-    //private ArrayList<Mascota> mascotas;
+    //private ConstructorMascotas constructorMascotas;
     private ArrayList<PerfilMascota> seguidores;
     private int iSeguidores;
     private ArrayList<PerfilMascota> fotosMascotas;
 
-    public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context) {
-        this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
+    public RecyclerViewFavoritasPresenter(IRecyclerViewFavoritas iRecyclerViewFavoritas, Context context) {
+        this.iRecyclerViewFavoritas = iRecyclerViewFavoritas;
         this.context = context;
-        obtenerSeguidores();
-        //constructorMascotas= new ConstructorMascotas(this.context);
-        //obtenerMascotasBaseDatos();
-        /*if(bRaiting) {
-            mostarMascotasFavoritas();
-            return;
-        }*/
-        //mostrarMascotas();
+        obtenerMascotasFavoritas();
+        //obtenerSeguidores();
     }
 
     @Override
-    public void mostrarMascotas() {
-        /*ArrayList<Mascota> mascotas = obtenerMascotas();
-        Log.d("Mascota ",String.valueOf(mascotas.size()));
-        if(mascotas.size() == 0){
-            constructorMascotas.insertarMascotas();
-            mascotas = obtenerMascotas();
-        }
-        iRecyclerViewFragmentView.generarLinearLayoutVertical();
-        iRecyclerViewFragmentView.crearAdapter(mascotas);*/
-    }
-
-    @Override
-    public void mostrarMascotasRV() {
-        /*iRecyclerViewFragmentView.generarLinearLayoutVertical();
-        iRecyclerViewFragmentView.crearAdapter(obtenerLikesMascotas());*/
-        this.iRecyclerViewFragmentView.inicializarAdaptador(this.iRecyclerViewFragmentView.crearAdapter(fotosMascotas));
-        this.iRecyclerViewFragmentView.generarLinearLayoutVertical();
-    }
-
-    @Override
-    public void obtenerSeguidores() {
+    public void obtenerMascotasFavoritas() {
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Gson gsonSeguidores = restApiAdapter.construyeGsonDeserializadorSeguidores();
         IEndPointsApi iEndPointsApi = restApiAdapter.establecerConexionRestApiInstagram(gsonSeguidores);
@@ -90,9 +63,15 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
                 Log.e("Falló la conexión" , t.toString());
             }
         });
-
     }
 
+    @Override
+    public void mostrarMascotasRV() {
+        iRecyclerViewFavoritas.inicializarAdaptador(iRecyclerViewFavoritas.crearAdaptador(fotosMascotas));
+        iRecyclerViewFavoritas.generarLinearLyout();
+    }
+
+    @Override
     public void obtenerFotosSeguidores() {
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Gson gsonFotosSeguidores = restApiAdapter.construyeGsonDeserializadorMediaRecent();
@@ -103,8 +82,8 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         fotosMascotas = new ArrayList<>();
 
         iSeguidores = 0;
-        for (PerfilMascota fotoMascota:seguidores) {
-            Call<MascotasResponse> mascotaResponseCall = iEndPointsApi.getRecentMedia(Long.parseLong(fotoMascota.getId()));
+        for (final PerfilMascota perfilMascota : seguidores) {
+            Call<MascotasResponse> mascotaResponseCall = iEndPointsApi.getRecentMedia(Long.parseLong(perfilMascota.getId()));
 
             mascotaResponseCall.enqueue(new Callback<MascotasResponse>() {
                 @Override
@@ -114,6 +93,18 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
                     fotosMascotas.addAll(mascotaResponse.getMascotas());
 
                     if (iSeguidores == seguidores.size()) {
+                        //Se obtienen las fotos con más likes
+
+                        Collections.sort(fotosMascotas,Collections.<PerfilMascota>reverseOrder());
+                        ArrayList<PerfilMascota> favoritas = new ArrayList<PerfilMascota>();
+                        for(int i = 0; i<5; i++){
+                            favoritas.add(fotosMascotas.get(i));
+                        }
+                        fotosMascotas = favoritas;
+
+                        //fotosMascotas.sort((o1, o2) -> o1.getLikesFoto().compareTo(o2.getLikesFoto()));
+
+                        //fotosMascotas.sort(FotoMascota);
                         mostrarMascotasRV();
                     }
                     //mascotas = mascotaResponse.getMascotas();
@@ -128,15 +119,7 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
                 }
             });
         }
-    }
-/*
-    @Override
-    public ArrayList<Mascota> obtenerLikesMascotas() {
-        return constructorMascotas.obtenerLikesMascotas();
+
     }
 
-    @Override
-    public ArrayList<Mascota> obtenerMascotas() {
-        return constructorMascotas.obtenerMascotas();
-    }*/
 }

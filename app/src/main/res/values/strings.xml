@@ -4,12 +4,15 @@
     <string name="name_favorito">Mascotas Favoritas</string>
     <string name="menu_contacto">Contacto</string>
     <string name="menu_about">Acerca de</string>
+    <string name="menu_configurar_cuenta">Configurar Cuenta</string>
+    <string name="name_configurar_cuenta">Pestagram</string>
     <string name="btn_subir">Subir Nueva Mascota</string>
     <string name="detalle_contacto">Detalle del Desarrollador</string>
     <string name="nombre_contacto">Nombre:</string>
     <string name="email_contacto">Email:</string>
     <string name="comentario_contacto">Mensaje:</string>
     <string name="btn_enviar_mail">Enviar</string>
+    <string name="tv_configurar_Cuenta">Escribe tu usuario</string>
     <string name="nombre_creador">Gregory Bustamante</string>
     <string name="biografia_desarrollador"> Nació en el año 1987 estudió la carrera de Ing. Electromecánica y se graduó de la Universidad UAGRM en el año 2008,
         mismo año realiza un diplomado en Automatización Industrial y actualmente se encuentra estudiado una especialidad en la UNAM
@@ -24,5 +27,13 @@
     <string name="like">Diste like a </string>
 
     <string name="name_default">Valvula</string>
+    <string name="pUrl">Url</string>
+    <string name="pLikes">Número de Likes</string>
+    <string name="cuenta_actual">Cuenta Actual: </string>
+    <string name="btn_guardar_cuenta">Guardar</string>
+    <string name="NombrePerfil">Nombre de Perfil</string>
+    <string name="err_msg">Introduce tu Nombre</string>
+    <string name="cuentaInstagram">gbrcode</string>
+    <string name="item_config">Configurar Cuenta</string>
 
 </resources>

@@ -8,17 +8,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.gecode.petgrammascotas.adapter.AdapterMascota;
 import com.gecode.petgrammascotas.modelo.Mascota;
-import com.gecode.petgrammascotas.presentador.RecyclerViewFragmentPresenter;
-import com.gecode.petgrammascotas.vista.fragment.IRecyclerViewFragmentView;
+import com.gecode.petgrammascotas.modelo.PerfilMascota;
+import com.gecode.petgrammascotas.presentador.IRecyclerViewFavoritasPresenter;
+import com.gecode.petgrammascotas.presentador.RecyclerViewFavoritasPresenter;
+import com.gecode.petgrammascotas.vista.fragment.IRecyclerViewFavoritas;
 
 import java.util.ArrayList;
 
-public class MascotasFavoritas extends AppCompatActivity implements IRecyclerViewFragmentView{
+public class MascotasFavoritas extends AppCompatActivity implements IRecyclerViewFavoritas {
 
     private RecyclerView listadoMascotas;
+    private ArrayList<Mascota> mascotas;
+    private TextView tituloPantalla;
+    private IRecyclerViewFavoritasPresenter iRecyclerViewFavoritasPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +35,10 @@ public class MascotasFavoritas extends AppCompatActivity implements IRecyclerVie
         setSupportActionBar(toolPersonalizado);
 
         listadoMascotas = (RecyclerView) findViewById( R.id.rvMascota );
-        RecyclerViewFragmentPresenter recyclerViewFragmentPresenter = new RecyclerViewFragmentPresenter(this,getApplicationContext(),true);
+        iRecyclerViewFavoritasPresenter = new RecyclerViewFavoritasPresenter(this,getBaseContext());
 
          agregarFAB();
     }
-
 
     // Retorna a la Primera Activida al dar Click en el boton retroceso
     public  void  irPrimeraActividad (View v) {
@@ -53,15 +58,21 @@ public class MascotasFavoritas extends AppCompatActivity implements IRecyclerVie
     }
 
     @Override
-    public void generarLinearLayoutVertical() {
+    public void generarLinearLyout() {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listadoMascotas.setLayoutManager( llm );
     }
 
     @Override
-    public void crearAdapter(ArrayList<Mascota> lstMascotas) {
+    public AdapterMascota crearAdaptador(ArrayList<PerfilMascota> lstMascotas) {
         AdapterMascota adaptador = new AdapterMascota(lstMascotas,this);
+        //listadoMascotas.setAdapter(adaptador);
+        return adaptador;
+    }
+
+    @Override
+    public void inicializarAdaptador(AdapterMascota adaptador) {
         listadoMascotas.setAdapter(adaptador);
     }
 

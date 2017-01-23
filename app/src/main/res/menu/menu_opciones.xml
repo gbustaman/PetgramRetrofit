@@ -11,4 +11,9 @@
         android:title="@string/menu_about"
         android:orderInCategory="101">
     </item>
+    <!-- Menu Istagram: Configurar Cuenta -->
+    <item android:id="@+id/mCuentaIstagram"
+        android:title="@string/menu_configurar_cuenta"
+        android:orderInCategory="102">
+    </item>
 </menu>
